@@ -6,22 +6,24 @@ This repository contains code for decoding speech using surface electromyography
 
 ## 📁 Repository Structure
 
-emg2speech/
-├── basicOperations/ # SPD matrix operations on the manifold.
-├── rnn/ # GRU recurrent neural networs in Euclidean space and manifold space.
-├── emg2qwerty/ # Code to replicate results for emg2qwerty using our method.
-├── DATA/ Download the data and place it in this repo.
-├── requirements.txt # Python dependencies.
-├── README.md # Project description and instructions.
-└── .gitignore # Excludes DATA/ and other ignored files.
-├── largeVocabTrain.ipynb # Notebook to train large-vocab corpora.
-├── largeVocabTest.ipynb # Notebook to test the results for large-vocab corpora using a pretrained checkpoint.
-├── largeVocabDataVisualization.ipynb # Notebook to visualize large-vocab corpora.
-├── smallVocabEuclidean.ipynb # Notebook to train and test small-vocab corpora using Euclidean RNN.
-├── smallVocabManifold.ipynb # Notebook to train and test small-vocab corpora using manifold RNN.
-├── natoWords.ipynb # Notebook to train a model for NATO words.
-├── checkGrandfather.ipynb # Notebook to test articulation from grandfather passage using trained checkpoint from natoWords.ipynb. 
-├── checkrainbow.ipynb # Notebook to test articulation from rainbow passage using trained checkpoint from natoWords.ipynb. 
+    ```
+    emg2speech/
+    ├── basicOperations/ # SPD matrix operations on the manifold.
+    ├── rnn/ # GRU recurrent neural networs in Euclidean space and manifold space.
+    ├── emg2qwerty/ # Code to replicate results for emg2qwerty using our method.
+    ├── DATA/ Download the data and place it in this repo.
+    ├── requirements.txt # Python dependencies.
+    ├── README.md # Project description and instructions.
+    └── .gitignore # Excludes DATA/ and other ignored files.
+    ├── largeVocabTrain.ipynb # Notebook to train large-vocab corpora.
+    ├── largeVocabTest.ipynb # Notebook to test the results for large-vocab corpora using a pretrained checkpoint.
+    ├── largeVocabDataVisualization.ipynb # Notebook to visualize large-vocab corpora.
+    ├── smallVocabEuclidean.ipynb # Notebook to train and test small-vocab corpora using Euclidean RNN.
+    ├── smallVocabManifold.ipynb # Notebook to train and test small-vocab corpora using manifold RNN.
+    ├── natoWords.ipynb # Notebook to train a model for NATO words.
+    ├── checkGrandfather.ipynb # Notebook to test articulation from grandfather passage using trained checkpoint from natoWords.ipynb. 
+    ├── checkrainbow.ipynb # Notebook to test articulation from rainbow passage using trained checkpoint from natoWords.ipynb. 
+    ```
 
 ## The `DATA/` folder contains preprocessed EMG features and labels and is **not included in this repository** due to size .
 
