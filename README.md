@@ -25,7 +25,7 @@ This repository contains code for decoding speech using surface electromyography
     ├── checkrainbow.ipynb # Notebook to test articulation from rainbow passage using trained checkpoint from natoWords.ipynb. 
     ```
 
-## The `DATA/` folder contains preprocessed EMG features and labels and is **not included in this repository** due to size .
+## The `DATA/` folder contains EMG data and labels and is **not included in this repository** due to size .
 
 To obtain the data:
 
@@ -43,4 +43,5 @@ To obtain the data:
         ├── labelsLargeVocab.pkl # Labels for large-vocab.
         ├── dataSmallVocab.npy # small-vocab EMG data.
         ├── labelsSmallVOcab.npy # Labels for small-vocab.
+        ├── Audio # Synthesized personalized audio file samples.
         
