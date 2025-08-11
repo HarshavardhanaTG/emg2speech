@@ -29,7 +29,7 @@ This repository contains code for decoding speech using surface electromyography
 
 To obtain the data:
 
-1. Download the data from:  https://osf.io/bgh7t/ (under Files/Box).
+1. Download the data from:  https://osf.io/bgh7t/ (under Files/Box) (https://osf.io/bgh7t/files/3514cd85-6386-4d14-bb2f-060a0eb9f521?view_only=).
 2. Unzip it into the root project directory so it looks like this:
 
     ```
