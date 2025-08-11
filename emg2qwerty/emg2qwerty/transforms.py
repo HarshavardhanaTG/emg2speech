@@ -265,7 +265,7 @@ class SlidingCovariance:
     step_size: int = 16
     alpha: float = 0.9
     eps: float = 1e-5
-    approxDiag: bool = False  # <<-- NEW ARGUMENT
+    approxDiag: bool = False 
 
     def __post_init__(self):
         assert self.eigenvectorsL.shape == (16, 16)
