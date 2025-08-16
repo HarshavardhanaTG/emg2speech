@@ -66,6 +66,8 @@ class rnnNet(nn.Module):
         b, s, _ , _ = x.shape
         xD, xL = self.cholDe(x)
         times = torch.from_numpy(np.arange(s + 1)).float().to(self.device)
+        
+        eps = 1e-8
 
         hD = torch.ones(x.shape[0], self.diagHidden, device = self.device)
         hL = torch.zeros(x.shape[0], self.lowHidden, device = self.device)
@@ -79,12 +81,12 @@ class rnnNet(nn.Module):
         for t in range(x.shape[1]):
 
             if self.ODE:
-                hp = odeint(self.odefunc, torch.cat((hD.log(), hL), dim = 1), times[t:t + 2], rtol = 1e-4, atol = 1e-5, method = 'euler')[1]
-                hD = hp[:, :self.diagHidden].tanh().exp()
+                hp = odeint(self.odefunc, torch.cat((hD.add(eps).log(), hL), dim = 1), times[t:t + 2], rtol = 1e-4, atol = 1e-5, method = 'euler')[1]
+                hD = hp[:, :self.diagHidden].tanh().exp().clamp_min(eps)
                 hL = hp[:, self.diagHidden:]
 
-                hpRe = odeint(self.odefuncRe, torch.cat((hDRe.log(), hLRe), dim = 1), times[t:t + 2], rtol = 1e-4, atol = 1e-5, method = 'euler')[1]
-                hDRe = hpRe[:, :self.diagHidden].tanh().exp()
+                hpRe = odeint(self.odefuncRe, torch.cat((hDRe.add(eps).log(), hLRe), dim = 1), times[t:t + 2], rtol = 1e-4, atol = 1e-5, method = 'euler')[1]
+                hDRe = hpRe[:, :self.diagHidden].tanh().exp().clamp_min(eps)
                 hLRe = hpRe[:, self.diagHidden:]
 
             
@@ -94,8 +96,8 @@ class rnnNet(nn.Module):
             hDRe = self.rgruDRe(xD[:, x.shape[1] - t - 1, :], hDRe)
             hLRe = self.rgruLRe(xL[:, x.shape[1] - t - 1, :], hLRe)
 
-            out.append(torch.cat((hD.log(), hL), dim = 1))
-            outRe.append(torch.cat((hDRe.log(), hLRe), dim = 1))
+            out.append(torch.cat((hD.add(eps).log(), hL), dim = 1))
+            outRe.append(torch.cat((hDRe.add(eps).log(), hLRe), dim = 1))
 
         out = torch.stack(out)     
         outRe = torch.stack(outRe)   
@@ -108,13 +110,15 @@ class rnnNet(nn.Module):
 
 
     def cholDe(self, x):
-        b, s, n, n = x.shape
+        b, s, n, _ = x.shape
         x = x.reshape(-1, n, n)
-        L = torch.linalg.cholesky(x)
+        jitter = 1e-6
+        I = torch.eye(n, device = x.device, dtype = x.dtype)
+        L = torch.linalg.cholesky(x + jitter * I)
         d = x.new_zeros(b * s, n)
         l = x.new_zeros(b * s, n * (n - 1) // 2)
         for i in range(b * s):
-            d[i] = L[i].diag()
+            d[i] = L[i].diagonal()
             l[i] = torch.cat([L[i][j: j + 1, :j] for j in range(1, n)], dim = 1)[0]
         return d.reshape(b, s, -1), l.reshape(b, s, -1)   
 
@@ -156,11 +160,11 @@ class manifoldGRUCell(nn.Module):
         bR, bZ, bH = self.bias.chunk(3, 0)
 
         if self.diag:
-
-            zGate = (bZ.abs() * (wZ.log() + uZ.log()).exp()).sigmoid()
-            rGate = (bR.abs() * (wR.log() + uR.log()).exp()).sigmoid()          
-            hTilde = self.nonlinear((bH.abs() * (wH.log() + (rGate * uH).log()).exp()))
-            ht = ((1 - zGate) * hidden.log() + hTilde.log() * (zGate)).exp()
+            eps = 1e-8
+            zGate = (bZ.abs() * (wZ.add(eps).log() + uZ.add(eps).log()).exp()).sigmoid()
+            rGate = (bR.abs() * (wR.add(eps).log() + uR.add(eps).log()).exp()).sigmoid()          
+            hTilde = self.nonlinear((bH.abs() * (wH.add(eps).log() + (rGate * uH).add(eps).log()).exp()))
+            ht = ((1 - zGate) * hidden.add(eps).log() + hTilde.add(eps).log() * (zGate)).exp()
         else:
             zGate = (wZ + uZ + bZ).sigmoid()
             rGate = (wR + uR + bR).sigmoid()
