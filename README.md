@@ -11,13 +11,20 @@ This repository contains code for decoding speech using surface electromyography
     ├── basicOperations/ # SPD matrix operations on the manifold.
     ├── rnn/ # GRU recurrent neural networs in Euclidean space and manifold space.
     ├── emg2qwerty/ # Code to replicate results for emg2qwerty using our method.
+
     ├── DATA/ Download the data and place it in this repo.
+
     ├── requirements.txt # Python dependencies.
     ├── README.md # Project description and instructions.
     └── .gitignore # Excludes DATA/ and other ignored files.
+
     ├── largeVocabTrain.ipynb # Notebook to train large-vocab corpora.
     ├── largeVocabTest.ipynb # Notebook to test the results for large-vocab corpora using a pretrained checkpoint.
+    ├── largeVocabTestWithLM.ipynb # Notebook to test the results for large-vocab corpora using a pretrained checkpoint with a phone-level language model.
+    ├── largeVocabTrainWithIcefall.ipynb # Notebook to train large-vocab corpora with spaces removed.
+    ├── largeVocabTestWithIcefall.ipynb # Notebook to test the results for large-vocab corpora using a pretrained checkpoint using icefall WFST model.
     ├── largeVocabDataVisualization.ipynb # Notebook to visualize large-vocab corpora.
+
     ├── smallVocabEuclidean.ipynb # Notebook to train and test small-vocab corpora using Euclidean RNN.
     ├── smallVocabManifold.ipynb # Notebook to train and test small-vocab corpora using manifold RNN.
     ├── natoWords.ipynb # Notebook to train a model for NATO words.
@@ -35,13 +42,17 @@ To obtain the data:
     ```
     emg2speech/
     ├── DATA/
-    │   ├── ckptsLargeVocab/ # Trained check points for data large-vocab.
+    │   ├── ckptsLargeVocab/ # Trained check points for data large-vocab (Also, all LMs + WFST graphs).
     │   ├── ckptsNatoWords/ # Trained check points for data NATO-words.
     │   ├── ckptsSmallVocab/ # Trained ckeck points for data small-vocab
     └── ├── emg2qwerty/ # Trained check points for emg2qwerty.
     ``` ├── dataLargeVocab.pkl # large-vocab EMG data.
         ├── labelsLargeVocab.pkl # Labels for large-vocab.
         ├── dataSmallVocab.npy # small-vocab EMG data.
-        ├── labelsSmallVOcab.npy # Labels for small-vocab.
+        ├── labelsSmallVocab.npy # Labels for small-vocab.
         ├── Audio # Synthesized personalized audio file samples.
+        ├── Subject 1 # NATO words, subject 1
+        ├── Subject 2 # NATO words, subject 2
+        ├── Subject 3 # NATO words, subject 3
+        ├── Subject 4 # NATO words, subject 4
         
