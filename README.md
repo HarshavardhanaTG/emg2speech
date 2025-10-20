@@ -2,7 +2,7 @@
 
 **Paper:** *Non-invasive electromyographic speech neuroprosthesis: a geometric perspective*  
 **Authors:** Harshavardhana Gowda and Lee M. Miller.  
-**Link:** [https://arxiv.org/abs/xxxx.xxxxx](https://arxiv.org/abs/xxxx.xxxxx)  
+**Link:** [https://arxiv.org/pdf/2502.05762](https://arxiv.org/pdf/2502.05762)  
 **Citation:**
 ```
 @inproceedings{
