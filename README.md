@@ -1,8 +1,24 @@
 ## EMG-to-speech decoding
 
-This repository contains code for decoding speech using surface electromyography (sEMG) signals. The system captures muscle activity from the face and neck and maps it to phonemes. The goal is to create non-invasive neural speech interfaces.
+**Paper:** *Non-invasive electromyographic speech neuroprosthesis: a geometric perspective*  
+**Authors:** Harshavardhana Gowda and Lee M. Miller.  
+**Link:** [https://arxiv.org/abs/xxxx.xxxxx](https://arxiv.org/abs/xxxx.xxxxx)  
+**Citation:**
+```
+@inproceedings{
+gowda2025noninvasive,
+title={Non-invasive electromyographic speech neuroprosthesis: a geometric perspective},
+author={Harshavardhana T Gowda and Lee M. Miller},
+booktitle={NeurIPS 2025 Workshop on Learning from Time Series for Health},
+year={2025},
+url={https://openreview.net/forum?id=hHEMyFejP8}
+}
+```
 
----
+This repository contains code for decoding speech using surface electromyography (sEMG) signals.  
+The system captures muscle activity from the face and neck and maps it to phonemes.  
+The goal is to create non-invasive neural speech interfaces.
+
 
 ## 📁 Repository Structure
 
