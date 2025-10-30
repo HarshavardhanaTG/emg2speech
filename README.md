@@ -17,7 +17,7 @@ url={https://openreview.net/forum?id=hHEMyFejP8}
 
 This repository contains code for decoding speech using surface electromyography (sEMG) signals.  
 The system captures muscle activity from the face and neck and maps it to phonemes.  
-The goal is to create non-invasive neural speech interfaces.
+The goal is to create non-invasive neural speech interfaces. This paper contains only large-vocab results.
 
 
 ## 📁 Repository Structure
@@ -40,6 +40,7 @@ The goal is to create non-invasive neural speech interfaces.
     ├── largeVocabTrainWithIcefall.ipynb # Notebook to train large-vocab corpora with spaces removed.
     ├── largeVocabTestWithIcefall.ipynb # Notebook to test the results for large-vocab corpora using a pretrained checkpoint using icefall WFST model.
     ├── largeVocabDataVisualization.ipynb # Notebook to visualize large-vocab corpora.
+    ├── largeVocabTrainSpectrogram.ipynb # Baseline spectrogram with vanilla GRU.
 
     ├── smallVocabEuclidean.ipynb # Notebook to train and test small-vocab corpora using Euclidean RNN.
     ├── smallVocabManifold.ipynb # Notebook to train and test small-vocab corpora using manifold RNN.
