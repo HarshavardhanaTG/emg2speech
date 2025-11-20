@@ -53,7 +53,7 @@ The goal is to create non-invasive neural speech interfaces. This paper contains
 
 To obtain the data:
 
-1. Download the data from:  https://osf.io/bgh7t/ (under Files/Box) (https://osf.io/bgh7t/files/3514cd85-6386-4d14-bb2f-060a0eb9f521?view_only=).
+1. Download the data from:  https://osf.io/bgh7t/ (under Files/Box).
 2. Unzip it into the root project directory so it looks like this:
 
     ```

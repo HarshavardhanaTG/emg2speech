@@ -1,0 +1,30 @@
+in_features: 256
+mlp_features:
+- 384
+block_channels:
+- 24
+- 24
+- 24
+- 24
+kernel_width: 32
+optimizer:
+  _target_: torch.optim.Adam
+  lr: 0.001
+  weight_decay: 0.001
+lr_scheduler:
+  scheduler:
+    _target_: pl_bolts.optimizers.lr_scheduler.LinearWarmupCosineAnnealingLR
+    warmup_epochs: 10
+    max_epochs: 250
+    warmup_start_lr: 1.0e-08
+    eta_min: 1.0e-06
+  interval: epoch
+decoder:
+  _target_: emg2qwerty.decoder.CTCBeamDecoder
+  beam_size: 50
+  max_labels_per_timestep: 10
+  lm_path: /mnt/dataDrive/emgFullCorpora/toUpload/emg2qwerty/models/wikitext-103-6gram-charlm.bin
+  lm_weight: 2.0
+  insertion_bonus: 2.0
+  delete_key: Key.backspace
+share_hand_weights: false
